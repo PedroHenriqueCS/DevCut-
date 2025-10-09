@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
         event.preventDefault(); 
         
         // **arquivo da tela de login 
-        window.location.href = 'Tela-de-login/login-index.html'; 
+        window.location.href = 'agenda-online/agendar-corte-index.html'; 
         
         console.log('Botão Agendar Horário clicado. Redirecionando para a Tela-de-login/login-index.html.');
     });
