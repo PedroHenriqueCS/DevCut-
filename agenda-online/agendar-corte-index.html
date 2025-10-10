@@ -3,43 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css'rel='stylesheet'>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="style.css">
-
-    <title>Login DevCut</title>
+    <title>agendar corte</title>
 </head>
 <body>
-    <main class="container">
-        <form>
-            
-            <h1>Login DevCut</h1>
-            <div class="input-box">
-                <input placeholder="Usúario" type="gmail">
-                <i class="bx bxs-user"></i>
-            </div>
-            <div class="input-box">
-                <input placeholder="senha" type="password">
-                <i class="bx bxs-lock-alt"></i>
-            </div>
-
-            <div class="remember-forgot">
-            <label>
-                <input type="checkbox">
-                <span>Lembrar-me</span>
-
-            </label>
-            <a href="#">esqueci a senha</a>
-
-            </div>
-
-            <button type="submit" class="loguin">loguin</button>
-            <div class="register-link">
-                <p>não tem uma conta? <a href="#">registre-se</a></p>
-            
-
-            
-        </form>
-    </main>
     
+    <form id="form-agendamento">
+        <label for="nome">Seu Nome:</label>
+        <input type="text" id="nome" required>
+
+        <label for="barbeiro">Barbeiro:</label>
+        <select id="barbeiro" required onchange="mostrarFotoBarbeiro()">
+            <option value="" data-foto="">Selecione um Barbeiro</option>
+            <option value="1" data-foto="img/barbeiro-pedro.jpg">Pedro</option>
+            <option value="2" data-foto="img/logo.png">Paulo</option>
+            <option value="3" data-foto="caminho/para/foto_diniz.jpg">Diniz</option>
+            <option value="4" data-foto="caminho/para/foto_nicolas.jpg">Nicolas</option>
+        </select>
+
+        <div id="container-barbeiro-selecao">
+            <img id="barbeiro-foto" src="" alt="Foto do Barbeiro" style="display: none;">
+            <p id="mensagem-selecao">Selecione um barbeiro para ver a foto!</p>
+        </div>
+
+        <label for="data">Data:</label>
+        <input type="date" id="data" required>
+
+        <label for="hora">Hora:</label>
+        <select id="hora" required>
+            </select>
+
+        <button type="submit">Agendar Corte</button>
+    </form>
+    
+    <script src="script.js"></script>
 </body>
 </html>
+
