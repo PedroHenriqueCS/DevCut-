@@ -152,3 +152,8 @@ body {
         justify-content: center; 
     }
 }
+/* Logo do Nome "DevCut" */
+.logo img:nth-child(2) {
+    width: 100px; 
+    height: auto; 
+}
