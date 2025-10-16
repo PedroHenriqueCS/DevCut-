@@ -14,7 +14,7 @@ function mostrarFotoBarbeiro() {
     // Pega o caminho da foto que foi armazenado no atributo 'data-foto'
     const caminhoFoto = opcaoSelecionada.getAttribute('data-foto');
     
-    // Verifica se um barbeiro válido foi selecionado (ou seja, se a opção não é vazia)
+    // Verifica se um barbeiro válido foi selecionado (se a opção não é vazia)
     if (caminhoFoto && opcaoSelecionada.value !== "") {
         // Se a foto existir, define o caminho e mostra a imagem
         imgFoto.src = caminhoFoto;
