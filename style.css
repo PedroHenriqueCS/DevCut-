@@ -416,3 +416,88 @@ main.conteudo-principal {
         font-size: 1.2rem; /* Ajustado para telas bem pequenas */
     }
 }
+
+/* --- NOVOS ESTILOS: Seção Nossos Trabalhos/Galeria --- */
+.nossos-trabalhos {
+    background-color: #111;
+    padding: 80px 0;
+    text-align: center;
+}
+
+/* Título de seção genérico para reutilização */
+.section-title {
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+    color: #00bcd4;
+    text-align: center;
+}
+
+/* ... (demais estilos da galeria) ... */
+
+/* ======================================== */
+/* ====== NOVOS ESTILOS PARA SERVIÇOS ====== */
+/* ======================================== */
+
+.nossos-servicos {
+    padding: 80px 0;
+    background-color: #1a1a1a; /* Um tom ligeiramente diferente do header */
+}
+
+.servicos-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap; /* Para responsividade */
+}
+
+.nossos-servicos-lista {
+    padding: 80px 0;
+    background-color: #1a1a1a;
+}
+
+.servicos-wrapper {
+    display: flex;
+    justify-content: space-around; /* Espaça as colunas */
+    gap: 40px;
+    flex-wrap: wrap;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.servico-categoria {
+    width: 45%; /* Cada categoria ocupa quase metade do espaço */
+    min-width: 300px; /* Largura mínima para telas menores */
+}
+
+.servico-categoria h3 {
+    font-size: 1.8rem;
+    color: #00bcd4;
+    border-bottom: 2px solid #00bcd4;
+    padding-bottom: 10px;
+    margin-bottom: 25px;
+    text-align: left;
+}
+
+.servico-categoria ul {
+    list-style: none;
+    padding: 0;
+}
+
+.servico-categoria li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 1px dashed #444;
+    font-size: 1.1rem;
+    color: #ccc;
+}
+
+.servico-categoria li:last-child {
+    border-bottom: none; /* Remove a linha do último item */
+}
+
+.preco-lista {
+    font-weight: 600;
+    color: #fff;
+}

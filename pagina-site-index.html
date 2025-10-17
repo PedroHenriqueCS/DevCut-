@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="imagens/logo.png" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <title>DevCut</title>
 </head>
@@ -18,7 +19,7 @@
             <nav class="menu">
                 <a href="#inicio">Início</a> 
                 <a href="#">Sobre</a>
-                <a href="#">Serviços</a>
+                <a href="#servicos">Serviços</a>
                 <a href="#galeria">Galeria</a>
                 <button id="btn-agendar" class="btn-acao">Agendar Horário</button>
                 <a href="#" id="btn-contato" class="btn-acao-outline">Contato</a>
@@ -27,7 +28,6 @@
     </header>
 
     <main class="conteudo-principal">
-        /* Nova seção de Início */
         <section id="inicio" class="hero">
             <div class="container">
                 <h1>Transforme seu visual, inspire confiança.</h1>
@@ -35,11 +35,38 @@
             </div>
         </section>
         
+        <section id="servicos" class="nossos-servicos-lista">
+            <div class="container">
+                <h2 class="section-title">Nossos Serviços</h2>
+                <div class="servicos-wrapper">
+                    <div class="servico-categoria">
+                        <h3>Cortes de Cabelo</h3>
+                        <ul>
+                            <li><span>Corte Social</span><span class="preco-lista">R$ 35,00</span></li>
+                            <li><span>Corte Degradê (Fade)</span><span class="preco-lista">R$ 40,00</span></li>
+                            <li><span>Corte na Tesoura</span><span class="preco-lista">R$ 45,00</span></li>
+                            <li><span>Corte Infantil</span><span class="preco-lista">R$ 30,00</span></li>
+                            <li><span>Pezinho (Acabamento)</span><span class="preco-lista">R$ 15,00</span></li>
+                        </ul>
+                    </div>
+                    <div class="servico-categoria">
+                        <h3>Barba e Cuidados</h3>
+                        <ul>
+                            <li><span>Barba Tradicional</span><span class="preco-lista">R$ 30,00</span></li>
+                            <li><span>Modelagem de Barba</span><span class="preco-lista">R$ 35,00</span></li>
+                            <li><span>Hidratação de Barba</span><span class="preco-lista">R$ 20,00</span></li>
+                            <li><span>Pigmentação de Barba</span><span class="preco-lista">R$ 25,00</span></li>
+                            <li><span>Combo (Corte Degradê + Barba)</span><span class="preco-lista">R$ 65,00</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
     <section id="galeria" class="nossos-trabalhos">
         <div class="container">
-            <h2>Nossos Trabalhos</h2>
+            <h2 class="section-title">Nossos Trabalhos</h2>
             <div class="galeria-container">
                 <div class="imagem-galeria">
                     <img src="img/corte 1.jpg" alt="Corte de cabelo 1">
@@ -53,7 +80,6 @@
             </div>
         </div>
     </section>
-
 
     <script src="script.js"></script>
 </body>
