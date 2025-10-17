@@ -20,8 +20,9 @@ body {
     background-color: #1a1a1a;
     box-shadow: 0 2px 10px rgba(0,0,0,0.4);
     padding: 15px 0;
-    position: sticky;
+    position: fixed; /* Alterado de 'sticky' para 'fixed' */
     top: 0;
+    width: 100%; /* Adicionado para ocupar toda a largura */
     z-index: 1000;
 }
 
@@ -55,7 +56,7 @@ body {
 
 /* Menu */
 .menu {
-    display: flex; 
+    display: flex;
     align-items: center;
 }
 
@@ -84,12 +85,12 @@ body {
     border-radius: 5px;
     cursor: pointer;
     transition: all 0.3s ease;
-    margin-left: 25px; 
+    margin-left: 25px;
 }
 
 /* Botão: Agendar Horário */
 .btn-acao {
-    background-color: #00bcd4; 
+    background-color: #00bcd4;
     color: #1a1a1a;
     border: 2px solid #00bcd4;
 }
@@ -115,7 +116,8 @@ body {
 
 /*Estilos da Seção Principal */
 .conteudo-principal {
-    padding: 100px 0;
+    padding-top: 120px; /* Aumentado para não ficar atrás do cabeçalho */
+    padding-bottom: 100px;
     text-align: center;
 }
 
@@ -129,13 +131,13 @@ body {
 @media (max-width: 768px) {
     .container {
         flex-direction: column;
-        align-items: flex-start; 
+        align-items: flex-start;
     }
 
     .menu {
         margin-top: 15px;
         /* Usa flex-wrap para permitir que os links quebrem a linha */
-        flex-wrap: wrap; 
+        flex-wrap: wrap;
         justify-content: center; /* Centraliza os itens no mobile */
         width: 100%;
     }
@@ -149,40 +151,28 @@ body {
     /* Ajuste para o logo no mobile */
     .logo {
         width: 100%;
-        justify-content: center; 
+        justify-content: center;
     }
 }
 /* Logo do Nome "DevCut" */
 .logo img:nth-child(2) {
-    width: 100px; 
-    height: auto; 
+    width: 100px;
+    height: auto;
 }
 
 /* Estilos do Formulário de Agendamento */
 
-body {
-    
-    background-color: #1a1a1a; 
-    font-family: 'Arial', sans-serif;
-    color: #f0f0f0; /* Texto claro */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    margin: 0;
-}
-
-
 #form-agendamento {
-    background-color: #2c2c2c; 
+    background-color: #2c2c2c;
     padding: 40px;
     border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); 
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
     width: 100%;
-    max-width: 450px; 
+    max-width: 450px;
     display: flex;
     flex-direction: column;
-    gap: 15px; 
+    gap: 15px;
+    margin: auto; /* Para centralizar na página de agendamento */
 }
 
 
@@ -203,25 +193,25 @@ select {
     border: 1px solid #555;
     border-radius: 6px;
     background-color: #3a3a3a;
-    color: #ffffff; 
-    box-sizing: border-box; 
+    color: #ffffff;
+    box-sizing: border-box;
     font-size: 16px;
     transition: border-color 0.3s;
-    appearance: none; 
+    appearance: none;
 }
 
 
 input[type="text"]:focus,
 input[type="date"]:focus,
 select:focus {
-    border-color: #f3f2f1; 
+    border-color: #f3f2f1;
     outline: none;
     box-shadow: 0 0 5px rgba(7, 7, 7, 0.5);
 }
 
 /* --- ESTILO DO BOTÃO DE ENVIAR (SUBMIT) --- */
 button[type="submit"] {
-    background-color: #ffffff; 
+    background-color: #ffffff;
     color: #1a1a1a;
     border: none;
     padding: 15px;
@@ -235,7 +225,7 @@ button[type="submit"] {
 
 /* Efeito ao passar o mouse sobre o botão */
 button[type="submit"]:hover {
-    background-color: #00bcd4; 
+    background-color: #00bcd4;
 }
 
 /* Efeito ao clicar no botão */
@@ -257,9 +247,9 @@ button[type="submit"]:active {
     flex-direction: column;
     align-items: center;
     padding: 15px;
-    margin-top: -5px; 
+    margin-top: -5px;
     margin-bottom: 15px;
-    border: 1px dashed #444; 
+    border: 1px dashed #444;
     border-radius: 8px;
     background-color: #333;
 }
