@@ -354,3 +354,65 @@ button[type="submit"]:active {
         align-items: center;
     }
 }
+
+/* --- NOVOS ESTILOS: Seção Hero (Início) --- */
+.hero {
+    position: relative;
+    height: 150vh; /* Altura total da viewport */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+    background: url('/img/pedro\ barba\ edition.png') no-repeat center center/cover; /* Imagem de fundo */
+    /* Adiciona um overlay escuro para melhorar a leitura do texto */
+    box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.6);
+    margin-top: -95px; /* Ajusta para compensar o header fixo, se necessário */
+    padding-top: 95px; /* Adiciona o padding para o conteúdo não ficar por baixo do header */
+}
+
+.hero .container {
+    max-width: 900px;
+}
+
+.hero h1 {
+    font-size: 4.5rem; 
+    margin-bottom: 20px;
+    font-weight: 700;
+    color: #00bcd4; 
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+}
+
+.hero p {
+    font-size: 1.8rem; 
+    margin-bottom: 40px;
+    line-height: 1.6;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);
+}
+
+
+/* Ajuste para o padding-top do main, já que o hero ocupa a tela toda */
+main.conteudo-principal {
+    padding-top: 0;
+}
+
+/* --- Responsividade para a Seção Hero --- */
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 3rem; /* Ajustado para telas menores */
+    }
+
+    .hero p {
+        font-size: 1.4rem; /* Ajustado para telas menores */
+    }
+}
+
+@media (max-width: 480px) {
+    .hero h1 {
+        font-size: 2.5rem; /* Ajustado para telas bem pequenas */
+    }
+
+    .hero p {
+        font-size: 1.2rem; /* Ajustado para telas bem pequenas */
+    }
+}
