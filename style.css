@@ -376,15 +376,15 @@ button[type="submit"]:active {
 }
 
 .hero h1 {
-    font-size: 4.5rem; 
+    font-size: 4.5rem;
     margin-bottom: 20px;
     font-weight: 700;
-    color: #00bcd4; 
+    color: #00bcd4;
     text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
 }
 
 .hero p {
-    font-size: 1.8rem; 
+    font-size: 1.8rem;
     margin-bottom: 40px;
     line-height: 1.6;
     text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);
@@ -500,4 +500,36 @@ main.conteudo-principal {
 .preco-lista {
     font-weight: 600;
     color: #fff;
+}
+
+/* Custom styles for agendamento page */
+body.agendamento {
+    background: #1a1a1a;
+}
+
+#form-agendamento {
+    background-color: #222;
+    border: 1px solid #00bcd4;
+}
+
+#form-agendamento label {
+    color: #00bcd4;
+}
+
+#form-agendamento input,
+#form-agendamento select {
+    background-color: #333;
+    border-color: #00bcd4;
+    color: #fff;
+}
+
+#form-agendamento button[type="submit"] {
+    background-color: #00bcd4;
+    color: #1a1a1a;
+    font-weight: bold;
+}
+
+#form-agendamento button[type="submit"]:hover {
+    background-color: #fff;
+    color: #000;
 }
