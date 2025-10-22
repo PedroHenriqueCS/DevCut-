@@ -260,7 +260,7 @@ button[type="submit"]:active {
     height: 100px;
     border-radius: 50%; /* Deixa a foto circular */
     object-fit: cover;
-    border: 3px solid #ff9900; /* Borda de destaque */
+    border: 3px solid #00bcd4; /* Borda de destaque */
     margin-bottom: 10px;
 }
 
@@ -290,7 +290,7 @@ button[type="submit"]:active {
     height: 100px;
     border-radius: 50%; /* Deixa a foto circular */
     object-fit: cover;
-    border: 3px solid #ff9900; /* Borda de destaque */
+    border: 3px solid #00bcd4; /* Borda de destaque */
     margin-bottom: 10px;
 }
 

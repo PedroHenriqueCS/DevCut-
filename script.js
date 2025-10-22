@@ -6,6 +6,8 @@
  */
 function limparHorarios() {
     const selectHora = document.getElementById('hora');
+    if (!selectHora) return; // Garante que o elemento existe
+
     // Remove todas as opções
     while (selectHora.options.length > 0) {
         selectHora.remove(0);
@@ -14,10 +16,13 @@ function limparHorarios() {
 
 /**
  * Gera horários de 30 em 30 minutos, das 08:00 às 17:00.
+ * ATENÇÃO: Esta função *não* verifica conflitos de agendamento no BD.
  */
 function carregarHorariosDisponiveis() {
     const selectHora = document.getElementById('hora');
     
+    if (!selectHora) return;
+
     limparHorarios();
 
     const horaInicio = 8; 
@@ -32,18 +37,19 @@ function carregarHorariosDisponiveis() {
 
     for (let hora = horaInicio; hora < horaFim; hora++) {
         for (let minuto = 0; minuto < 60; minuto += intervalo) {
+            // Garante que não ultrapasse a horaFim (17:00)
             if (hora === horaFim - 1 && minuto >= 60 - intervalo) {
                 break; 
             }
             
             const horaFormatada = String(hora).padStart(2, '0');
             const minutoFormatado = String(minuto).padStart(2, '0');
-            const horario = `${horaFormatada}:${minutoFormatado}`;
+            const horario = `${horaFormatada}:${minutoFormatado}:00`; // Incluir segundos (00) para o MySQL
 
             const option = document.createElement('option');
             option.value = horario;
-            option.textContent = horario;
-
+            option.textContent = horario.substring(0, 5); // Exibe HH:MM
+            
             selectHora.appendChild(option);
         }
     }
@@ -54,6 +60,9 @@ function mostrarFotoBarbeiro() {
     const selectBarbeiro = document.getElementById('barbeiro');
     const fotoBarbeiro = document.getElementById('barbeiro-foto');
     const mensagemSelecao = document.getElementById('mensagem-selecao');
+
+    if (!selectBarbeiro || !fotoBarbeiro || !mensagemSelecao) return;
+
     const fotoUrl = selectBarbeiro.options[selectBarbeiro.selectedIndex].getAttribute('data-foto');
 
     if (fotoUrl) {
@@ -68,7 +77,6 @@ function mostrarFotoBarbeiro() {
         limparHorarios();
     }
 }
-
 
 
 // --- INICIALIZAÇÃO E LISTENERS (DOMContentLoaded UNIFICADO) ---
@@ -88,10 +96,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Funcionalidade do botão "Agendar Horário"
     if (btnAgendar) {
          btnAgendar.addEventListener('click', (event) => {
-            event.preventDefault(); 
-            // ATENÇÃO: Se você moveu 'agendar-corte-index.html' para a raiz, mude o caminho abaixo:
-            window.location.href = 'agendar-corte-index.html'; 
-        });
+             event.preventDefault(); 
+             window.location.href = 'agendar-corte-index.html'; 
+         });
     }
 
     // Funcionalidade do botão "Contato"
@@ -115,6 +122,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     if (inputData) {
         inputData.addEventListener('change', carregarHorariosDisponiveis);
+        // Opcional: Impedir agendamentos para datas passadas (se for um input type="date")
+        const hoje = new Date().toISOString().split('T')[0];
+        inputData.setAttribute('min', hoje);
     }
     
     // 2. Listener para o ENVIO do Formulário (Onde a mágica do BD acontece)
@@ -125,9 +135,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Coleta os valores de todos os campos
             const nome = document.getElementById('nome').value;
-            const barbeiroId = selectBarbeiro.value;
-            const barbeiroNome = selectBarbeiro.options[selectBarbeiro.selectedIndex].textContent;
-            const data = inputData.value;
+            const barbeiroId = selectBarbeiro ? selectBarbeiro.value : '';
+            const barbeiroNome = selectBarbeiro && selectBarbeiro.options[selectBarbeiro.selectedIndex] ? 
+                                 selectBarbeiro.options[selectBarbeiro.selectedIndex].textContent : 
+                                 '';
+            const data = inputData ? inputData.value : '';
             const hora = document.getElementById('hora').value;
 
             // Validação básica
@@ -139,7 +151,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Prepara os dados para envio
             const dadosParaEnvio = { 
                 nome_cliente: nome, 
-                servico: barbeiroNome, // Usando o nome do barbeiro como serviço
+                servico: barbeiroNome, // CHAVE CORRETA: O PHP vai ler 'servico'
                 data: data, 
                 hora: hora 
             };
@@ -154,15 +166,23 @@ document.addEventListener('DOMContentLoaded', () => {
             })
             .then(response => {
                 if (!response.ok) {
-                    throw new Error('Erro na requisição: ' + response.statusText);
+                     // Tenta ler a mensagem de erro que vem do PHP
+                    return response.json().then(errorData => {
+                        throw new Error(errorData.message || 'Erro de rede ou servidor.');
+                    }).catch(() => {
+                        // Se não for JSON, joga o erro HTTP
+                        throw new Error('Erro na requisição: ' + response.statusText);
+                    });
                 }
                 return response.json(); 
             })
             .then(data => {
-                // Se o PHP retornar sucesso
+                // Se o PHP retornar status 'success'
                 if (data.status === 'success') {
                     alert(`✅ Agendamento de ${nome} com ${barbeiroNome} confirmado e SALVO no BD!`);
                     formAgendamento.reset(); // Limpa o formulário
+                    // Recarrega os horários (se precisar remover o que foi agendado)
+                    carregarHorariosDisponiveis(); 
                 } else {
                     // Se o PHP retornar status "error"
                     alert(`❌ Erro do servidor ao salvar: ${data.message}`);
@@ -171,7 +191,7 @@ document.addEventListener('DOMContentLoaded', () => {
             })
             .catch(error => {
                 // Captura erros de rede ou a exceção
-                alert('❌ Erro de comunicação com o servidor. Verifique o console.');
+                alert('❌ Erro de comunicação com o servidor. Verifique o console. Detalhe: ' + error.message);
                 console.error('Erro de envio (Fetch):', error);
             });
         });
