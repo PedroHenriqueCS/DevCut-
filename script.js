@@ -1,6 +1,5 @@
-// ====================================================================
 // --- FUNÇÕES HELPER (Auxiliares) ---
-// ====================================================================
+
 
 /**
  * Remove todas as opções do select de horários.
@@ -71,9 +70,9 @@ function mostrarFotoBarbeiro() {
 }
 
 
-// ====================================================================
+
 // --- INICIALIZAÇÃO E LISTENERS (DOMContentLoaded UNIFICADO) ---
-// ====================================================================
+
 
 document.addEventListener('DOMContentLoaded', () => {
     
