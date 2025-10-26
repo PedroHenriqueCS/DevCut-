@@ -535,10 +535,10 @@ body.agendamento {
     color: #000;
 }
 
-/* --- Seção Destaques (Os 2 Quadrados) --- */
+/* --- Seção Destaques (Os 2 Quadrados acima dos serviços) --- */
 
 .destaques-servicos {
-    background-color: #111; /* Fundo escuro, combinando com a galeria */
+    background-color: #111; /* Fundo escuro */
     padding: 60px 0; 
     border-top: 1px solid #222;
     border-bottom: 1px solid #222;
@@ -587,7 +587,7 @@ body.agendamento {
 .destaque-box p {
     font-size: 1rem;
     color: #ccc;
-    padding: 0 20px 25px 20px; /* Espaçamento interno para o texto */
+    padding: 0 20px 15px 20px;
     line-height: 1.5;
 }
 
@@ -602,5 +602,101 @@ body.agendamento {
         width: 90%; /* Ocupa mais largura no mobile */
         max-width: 450px;
         flex-basis: auto; /* Reseta a base flex */
+    }
+}
+
+/* --- Botão dos Quadrados de Destaque --- */
+
+.btn-destaque {
+    display: inline-block; /* Permite aplicar padding e margin */
+    margin-bottom: 25px;   /* Espaçamento inferior */
+    padding: 10px 25px;
+    border: 2px solid #00bcd4;
+    color: #00bcd4;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.btn-destaque:hover {
+    background-color: #00bcd4;
+    color: #1a1a1a; /* Cor de fundo escura */
+    box-shadow: 0 0 10px rgba(0, 188, 212, 0.7);
+}
+
+/* --- Seção Sobre Nós --- */
+
+.sobre-nos {
+    background-color: #1a1a1a; /* Fundo escuro, igual à lista de serviços */
+    padding: 80px 0;
+    border-bottom: 1px solid #222;
+}
+
+/* Container flexível para alinhar texto e imagem */
+.sobre-nos .container {
+    display: flex;
+    align-items: center; /* Alinha verticalmente o texto e a imagem */
+    justify-content: space-between;
+    gap: 40px; /* Espaço entre o texto e a imagem */
+    flex-wrap: wrap;
+}
+
+/* Coluna da esquerda (Texto) */
+.sobre-texto {
+    flex-basis: 50%; /* Tenta ocupar 50% da largura */
+    flex-grow: 1;
+    min-width: 300px; /* Largura mínima */
+}
+
+/* Título da seção "Sobre" alinhado à esquerda */
+.section-title-left {
+    font-size: 2.5rem;
+    margin-bottom: 25px;
+    color: #00bcd4;
+    text-align: left; /* Alinhado à esquerda */
+}
+
+.sobre-texto p {
+    font-size: 1rem;
+    color: #ccc;
+    line-height: 1.7;
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.sobre-texto strong {
+    color: #00bcd4;
+    font-weight: 600;
+}
+
+/* Coluna da direita (Imagem) */
+.sobre-imagem {
+    flex-basis: 40%;
+    flex-grow: 1;
+    min-width: 300px;
+}
+
+.sobre-imagem img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+/* Responsividade para a seção "Sobre" */
+@media (max-width: 900px) {
+    .sobre-nos .container {
+        flex-direction: column; /* Empilha texto e imagem */
+    }
+
+    .section-title-left,
+    .sobre-texto p {
+        text-align: center; /* Centraliza o texto no mobile */
+    }
+
+    .sobre-imagem {
+        margin-top: 30px; /* Espaço entre o texto e a imagem quando empilhado */
+        max-width: 450px; /* Limita a largura da imagem no mobile */
     }
 }
