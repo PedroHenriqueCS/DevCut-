@@ -432,11 +432,8 @@ main.conteudo-principal {
     text-align: center;
 }
 
-/* ... (demais estilos da galeria) ... */
+/* ====== ESTILOS PARA SERVIÇOS ====== */
 
-/* ======================================== */
-/* ====== NOVOS ESTILOS PARA SERVIÇOS ====== */
-/* ======================================== */
 
 .nossos-servicos {
     padding: 80px 0;
@@ -502,9 +499,13 @@ main.conteudo-principal {
     color: #fff;
 }
 
-/* Custom styles for agendamento page */
+/* Estilos e background da pagina de agendamento */
 body.agendamento {
-    background: #1a1a1a;
+    background-image: url('/img/Fundo\ Agendamento\ 3.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* Mantém o fundo fixo ao rolar */
 }
 
 #form-agendamento {
