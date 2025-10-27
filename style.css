@@ -736,3 +736,59 @@ body.agendamento {
     color: #00bcd4; /* Cor de destaque */
     font-weight: 600;
 }
+
+/* --- Seção Equipe --- */
+
+.nossa-equipe {
+    background-color: #1a1a1a; /* Fundo escuro */
+    padding: 80px 0;
+    border-top: 1px solid #222; /* Linha separadora */
+}
+
+.equipe-grid {
+    display: flex;
+    justify-content: center;
+    align-items: stretch; /* Garante que todos tenham a mesma altura */
+    flex-wrap: wrap;
+    gap: 30px; /* Espaço entre os quadrados */
+    margin-top: 40px; /* Espaço abaixo do título */
+}
+
+.membro-equipe {
+    background-color: #111; /* Fundo do quadrado (mais escuro) */
+    border: 1px solid #2c2c2c;
+    border-radius: 10px;
+    padding: 30px 25px;
+    text-align: center;
+    flex-basis: 260px; /* Largura base */
+    flex-grow: 1;
+    max-width: 300px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.membro-equipe:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 188, 212, 0.15);
+}
+
+.membro-equipe img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%; /* Foto circular */
+    object-fit: cover; /* Garante que a foto não distorça */
+    border: 3px solid #00bcd4; /* Borda de destaque */
+    margin-bottom: 20px;
+}
+
+.membro-equipe h3 {
+    font-size: 1.4rem;
+    color: #fff;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.membro-equipe p {
+    font-size: 1rem;
+    color: #00bcd4; /* Cor de destaque para o nível */
+    font-weight: 600;
+}
