@@ -700,3 +700,44 @@ body.agendamento {
         max-width: 450px; /* Limita a largura da imagem no mobile */
     }
 }
+
+/* --- Seção Extras (Sem Titulo / 4 Quadrados) --- */
+
+.extras-servicos {
+    background-color: #111; /* Fundo mais escuro */
+    padding: 80px 0;
+    border-bottom: 1px solid #222;
+}
+
+.extras-grid {
+    display: flex;
+    justify-content: center;
+    align-items: stretch; /* Garante que todos tenham a mesma altura */
+    flex-wrap: wrap;
+    gap: 20px; /* Espaço entre os quadrados */
+    margin-top: 40px; /* Espaço abaixo do título */
+}
+
+.extra-box {
+    background-color: #1a1a1a; /* Fundo do quadrado */
+    border: 1px solid #2c2c2c;
+    border-radius: 10px;
+    padding: 30px 20px;
+    text-align: center;
+    flex-basis: 250px; /* Largura base para cada quadrado */
+    flex-grow: 1;
+    max-width: 280px;  /* Largura máxima de cada quadrado */
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.extra-box:hover {
+    transform: translateY(-5px);
+    border-color: #00bcd4; /* Destaque no hover */
+    box-shadow: 0 8px 25px rgba(0, 188, 212, 0.15);
+}
+
+.extra-box h3 {
+    font-size: 1.3rem;
+    color: #00bcd4; /* Cor de destaque */
+    font-weight: 600;
+}
