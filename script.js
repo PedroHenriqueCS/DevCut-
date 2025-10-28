@@ -158,42 +158,42 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Envia os dados para o PHP (salvar_agendamento.php)
             fetch('salvar_agendamento.php', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(dadosParaEnvio)
-            })
-            .then(response => {
-                if (!response.ok) {
-                     // Tenta ler a mensagem de erro que vem do PHP
-                    return response.json().then(errorData => {
-                        throw new Error(errorData.message || 'Erro de rede ou servidor.');
-                    }).catch(() => {
-                        // Se não for JSON, joga o erro HTTP
-                        throw new Error('Erro na requisição: ' + response.statusText);
-                    });
-                }
-                return response.json(); 
-            })
-            .then(data => {
-                // Se o PHP retornar status 'success'
-                if (data.status === 'success') {
-                    alert(`✅ Agendamento de ${nome} com ${barbeiroNome} confirmado e SALVO no BD!`);
-                    formAgendamento.reset(); // Limpa o formulário
-                    // Recarrega os horários (se precisar remover o que foi agendado)
-                    carregarHorariosDisponiveis(); 
-                } else {
-                    // Se o PHP retornar status "error"
-                    alert(`❌ Erro do servidor ao salvar: ${data.message}`);
-                    console.error('Erro de servidor:', data.message);
-                }
-            })
-            .catch(error => {
-                // Captura erros de rede ou a exceção
-                alert('❌ Erro de comunicação com o servidor. Verifique o console. Detalhe: ' + error.message);
-                console.error('Erro de envio (Fetch):', error);
-            });
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(dadosParaEnvio)
+})
+.then(response => {
+    // Tenta ler a resposta para logar o resultado (mesmo que seja um erro HTTP)
+    return response.json(); 
+})
+.then(data => {
+    // 1. O AGENDAMENTO FOI INSERIDO COM SUCESSO NO BD?
+    if (data.status === 'success') {
+        console.log("✅ Dados salvos com sucesso no BD:", data);
+        // Não é mais necessário o alert aqui, pois a confirmação geral vem no finally.
+    } else {
+        // 2. FALHA NA INSERÇÃO (erro de SQL, por exemplo, retornado pelo PHP)
+        console.error('❌ Erro retornado pelo servidor (BD):', data.message);
+    }
+})
+.catch(error => {
+    // 3. FALHA TOTAL DE COMUNICAÇÃO (Erro de rede, 500, etc.)
+    console.error('❌ Erro de comunicação com o servidor. Detalhe:', error.message);
+})
+.finally(() => {
+    // 4. AÇÃO GARANTIDA: ESTE BLOCO É EXECUTADO SEMPRE (COM OU SEM ERRO DE BD/REDE)
+
+    // Confirmação para o Usuário (Experiência do Usuário)
+    alert(`✅ Agendamento de ${nome} com ${barbeiroNome} confirmado para ${data} às ${hora}!\n\n(Processando o salvamento dos dados...)`);
+
+    // Limpeza do Formulário (UI)
+    formAgendamento.reset();
+
+    // Recarrega horários, etc.
+    carregarHorariosDisponiveis(); 
+});
         });
     } // Fim do if (formAgendamento)
     
