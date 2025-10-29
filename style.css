@@ -389,8 +389,8 @@ button[type="submit"]:active {
 /* Ajuste para o padding-top do main, já que o hero ocupa a tela toda */
 main.conteudo-principal {
     padding-top: 0;
+    padding-bottom: 0; 
 }
-
 /* --- Responsividade para a Seção Hero --- */
 @media (max-width: 768px) {
     .hero h1 {
