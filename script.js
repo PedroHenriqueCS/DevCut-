@@ -78,12 +78,9 @@ function mostrarFotoBarbeiro() {
     }
 }
 
-// ======================================================
-//           NOVAS FUNÇÕES DO MODAL (INÍCIO)
-// ======================================================
-/**
- * Abre o modal de confirmação com uma mensagem específica.
- */
+
+/*--- Função do Modal ---*/
+/* Abre o Modal com Mensagem Especifica */
 function abrirModal(mensagem) {
     const overlay = document.getElementById('modal-overlay');
     const modal = document.getElementById('custom-modal');
@@ -116,10 +113,6 @@ function fecharModal() {
         mostrarFotoBarbeiro(); 
     }
 }
-// ======================================================
-//            NOVAS FUNÇÕES DO MODAL (FIM)
-// ======================================================
-
 
 // --- INICIALIZAÇÃO E LISTENERS (DOMContentLoaded UNIFICADO) ---
 

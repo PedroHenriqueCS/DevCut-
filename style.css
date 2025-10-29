@@ -870,3 +870,114 @@ body.agendamento {
     background-color: #fff; /* Hover branco */
     color: #1a1a1a;
 }
+
+/* --- Seção Footer (Localização e Horas) --- */
+
+.footer-contato {
+    background-color: #111; /* Fundo mais escuro */
+    padding: 80px 0;
+    border-top: 1px solid #222;
+}
+
+.footer-subtitle {
+    text-align: center;
+    color: #aaa;
+    font-size: 1rem;
+    margin-bottom: 5px;
+    font-weight: 300;
+}
+
+.footer-contato .section-title {
+    margin-bottom: 50px; /* Mais espaço após o título */
+}
+
+.footer-content-wrapper {
+    display: flex;
+    justify-content: space-between;
+    gap: 50px;
+    flex-wrap: wrap;
+}
+
+/* Coluna da Esquerda (Info) */
+.footer-info {
+    flex-basis: 45%;
+    flex-grow: 1;
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Espaço entre os 3 quadrados */
+}
+
+.info-box {
+    background-color: #1a1a1a;
+    padding: 25px;
+    border-radius: 10px;
+    border: 1px solid #2c2c2c;
+    text-align: center;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.info-box:hover {
+    transform: translateY(-5px);
+    border-color: #00bcd4;
+}
+
+.info-box i { /* Estilo para os ícones */
+    font-size: 2rem;
+    color: #00bcd4;
+    margin-bottom: 15px;
+}
+
+.info-box h3 {
+    font-size: 1.3rem;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+.info-box p {
+    font-size: 1rem;
+    color: #ccc;
+    line-height: 1.6;
+}
+
+/* Coluna da Direita (Horários) */
+.footer-horarios {
+    flex-basis: 45%;
+    flex-grow: 1;
+    min-width: 300px;
+    background-color: #1a1a1a;
+    padding: 25px 30px;
+    border-radius: 10px;
+    border: 1px solid #2c2c2c;
+}
+
+.footer-horarios h3 {
+    font-size: 1.3rem;
+    color: #00bcd4;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #2c2c2c;
+}
+
+.footer-horarios ul {
+    list-style: none;
+}
+
+.footer-horarios li {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1rem;
+    color: #ccc;
+    padding: 12px 0;
+    border-bottom: 1px dashed #444;
+}
+
+.footer-horarios li:last-child {
+    border-bottom: none;
+}
+
+.footer-horarios li span {
+    font-weight: 600;
+    color: #fff;
+    margin-right: 20px;
+}
