@@ -78,9 +78,50 @@ function mostrarFotoBarbeiro() {
     }
 }
 
+// ======================================================
+//           NOVAS FUNÇÕES DO MODAL (INÍCIO)
+// ======================================================
+/**
+ * Abre o modal de confirmação com uma mensagem específica.
+ */
+function abrirModal(mensagem) {
+    const overlay = document.getElementById('modal-overlay');
+    const modal = document.getElementById('custom-modal');
+    const modalMessage = document.getElementById('modal-message');
+
+    if (overlay && modal && modalMessage) {
+        modalMessage.textContent = mensagem; // Define a mensagem dinâmica
+        overlay.style.display = 'block';
+        modal.style.display = 'block';
+    }
+}
+
+/**
+ * Fecha o modal de confirmação e limpa o formulário.
+ */
+function fecharModal() {
+    const overlay = document.getElementById('modal-overlay');
+    const modal = document.getElementById('custom-modal');
+    const formAgendamento = document.getElementById('form-agendamento');
+
+    if (overlay && modal) {
+        overlay.style.display = 'none';
+        modal.style.display = 'none';
+    }
+
+    // Limpa o formulário e recarrega os horários APÓS fechar o modal
+    if (formAgendamento) {
+        formAgendamento.reset();
+        // Chama a função para resetar a foto do barbeiro e os horários
+        mostrarFotoBarbeiro(); 
+    }
+}
+// ======================================================
+//            NOVAS FUNÇÕES DO MODAL (FIM)
+// ======================================================
+
 
 // --- INICIALIZAÇÃO E LISTENERS (DOMContentLoaded UNIFICADO) ---
-
 
 document.addEventListener('DOMContentLoaded', () => {
     
@@ -114,6 +155,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const selectBarbeiro = document.getElementById('barbeiro');
     const inputData = document.getElementById('data');
     const formAgendamento = document.getElementById('form-agendamento');
+
+    // --- (NOVO) Listeners do Modal ---
+    const modalCloseBtn = document.getElementById('modal-close-btn');
+    const overlay = document.getElementById('modal-overlay');
+
+    if (modalCloseBtn) {
+        modalCloseBtn.addEventListener('click', fecharModal);
+    }
+    if (overlay) {
+        overlay.addEventListener('click', fecharModal); // Fecha ao clicar fora
+    }
     
     // 1. Listeners para a interatividade do formulário
     if (selectBarbeiro) {
@@ -127,7 +179,7 @@ document.addEventListener('DOMContentLoaded', () => {
         inputData.setAttribute('min', hoje);
     }
     
-    // 2. Listener para o ENVIO do Formulário (Onde a mágica do BD acontece)
+    // 2. Listener para o ENVIO do Formulário (MODIFICADO)
     if (formAgendamento) {
         formAgendamento.addEventListener('submit', function(event) {
             
@@ -144,7 +196,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Validação básica
             if (!nome || !barbeiroId || !data || !hora) {
-                alert('Por favor, preencha todos os campos do agendamento.');
+                // USA O MODAL PARA AVISAR O ERRO
+                abrirModal('Por favor, preencha todos os campos do agendamento.');
                 return; 
             }
 
@@ -158,42 +211,37 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Envia os dados para o PHP (salvar_agendamento.php)
             fetch('salvar_agendamento.php', {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(dadosParaEnvio)
-})
-.then(response => {
-    // Tenta ler a resposta para logar o resultado (mesmo que seja um erro HTTP)
-    return response.json(); 
-})
-.then(data => {
-    // 1. O AGENDAMENTO FOI INSERIDO COM SUCESSO NO BD?
-    if (data.status === 'success') {
-        console.log("✅ Dados salvos com sucesso no BD:", data);
-        // Não é mais necessário o alert aqui, pois a confirmação geral vem no finally.
-    } else {
-        // 2. FALHA NA INSERÇÃO (erro de SQL, por exemplo, retornado pelo PHP)
-        console.error('❌ Erro retornado pelo servidor (BD):', data.message);
-    }
-})
-.catch(error => {
-    // 3. FALHA TOTAL DE COMUNICAÇÃO (Erro de rede, 500, etc.)
-    console.error('❌ Erro de comunicação com o servidor. Detalhe:', error.message);
-})
-.finally(() => {
-    // 4. AÇÃO GARANTIDA: ESTE BLOCO É EXECUTADO SEMPRE (COM OU SEM ERRO DE BD/REDE)
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(dadosParaEnvio)
+            })
+            .then(response => {
+                return response.json(); 
+            })
+            .then(data => {
+                if (data.status === 'success') {
+                    console.log("✅ Dados salvos com sucesso no BD:", data);
+                } else {
+                    console.error('❌ Erro retornado pelo servidor (BD):', data.message);
+                }
+            })
+            .catch(error => {
+                console.error('❌ Erro de comunicação com o servidor. Detalhe:', error.message);
+            })
+            .finally(() => {
+                // 4. AÇÃO GARANTIDA: (MODIFICADO)
+                
+                // Remove o alert() antigo
+                // alert(`✅ Agendamento...`);
 
-    // Confirmação para o Usuário (Experiência do Usuário)
-    alert(`✅ Agendamento de ${nome} com ${barbeiroNome} confirmado para ${data} às ${hora}!\n\n(Processando o salvamento dos dados...)`);
+                // CHAMA O NOVO MODAL com a mensagem dinâmica
+                const mensagemConfirmacao = `Agendamento de ${nome} com ${barbeiroNome} confirmado para ${data} às ${hora.substring(0, 5)}!`;
+                abrirModal(mensagemConfirmacao);
 
-    // Limpeza do Formulário (UI)
-    formAgendamento.reset();
-
-    // Recarrega horários, etc.
-    carregarHorariosDisponiveis(); 
-});
+                // A limpeza do formulário agora acontece na função fecharModal()
+            });
         });
     } // Fim do if (formAgendamento)
     

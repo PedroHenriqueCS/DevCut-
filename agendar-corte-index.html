@@ -6,7 +6,7 @@
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="shortcut icon" href="img/logo.png" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
-    <title>agendar corte</title>
+    <title>Agendar Corte</title>
 </head>
 <body class="agendamento">
     
@@ -32,17 +32,20 @@
         <input type="date" id="data" required>
 
         <label for="hora">Hora:</label>
-<select id="hora" required>
+        <select id="hora" required>
+            </select>
     
-    
-    </select>
-    
-
         <button type="submit">Agendar Corte</button>
-        <div id="mensagem-sucesso" style="display: none;">Agendamento realizado com sucesso!</div>
+        </form>
 
-    </form>
+    <div id="modal-overlay" class="modal-overlay"></div>
     
+    <div id="custom-modal" class="custom-modal">
+        <i class='bx bx-check-circle modal-icon'></i>
+        <h2>Agendamento Confirmado!</h2>
+        <p id="modal-message">Sua mensagem aparecerá aqui.</p>
+        <button id="modal-close-btn" class="btn-modal-close">OK</button>
+    </div>
     <script src="script.js"></script>
 </body>
 </html>

@@ -804,3 +804,69 @@ body.agendamento {
     font-style: italic;
     max-width: 90%; /* Garante que não encoste na borda */
 }
+
+/* --- Modal de Confirmação (Preto e Azul) --- */
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Fundo preto semi-transparente */
+    z-index: 2000;
+    display: none; /* Começa escondido */
+}
+
+.custom-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #1a1a1a; /* Fundo preto */
+    border: 2px solid #00bcd4; /* Borda azul */
+    border-radius: 10px;
+    padding: 30px 40px;
+    width: 90%;
+    max-width: 400px;
+    z-index: 2001;
+    text-align: center;
+    box-shadow: 0 5px 30px rgba(0, 188, 212, 0.2);
+    display: none; /* Começa escondido */
+}
+
+.modal-icon {
+    font-size: 4rem;
+    color: #00bcd4; /* Ícone azul */
+    margin-bottom: 15px;
+}
+
+.custom-modal h2 {
+    color: #fff; /* Título branco (sobre fundo preto) */
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+}
+
+.custom-modal p {
+    color: #ccc; /* Texto cinza claro */
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+.btn-modal-close {
+    background-color: #00bcd4; /* Botão azul */
+    color: #1a1a1a; /* Texto preto */
+    border: none;
+    padding: 12px 30px;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-modal-close:hover {
+    background-color: #fff; /* Hover branco */
+    color: #1a1a1a;
+}
