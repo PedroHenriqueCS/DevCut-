@@ -131,7 +131,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (btnAgendar) {
          btnAgendar.addEventListener('click', (event) => {
              event.preventDefault(); 
-             window.location.href = 'agendar-corte-index.html'; 
+             window.location.href = 'agendar-corte.html'; 
          });
     }
 
